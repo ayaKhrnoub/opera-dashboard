@@ -6,5 +6,6 @@ export default defineConfig({
   server: {
     port: 4001,
   },
+  base:"/opera-dashboard/",
   plugins: [react()],
 });
