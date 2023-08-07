@@ -56,7 +56,7 @@ const AddNews = () => {
         photo: image,
         text: draftToHtml(convertToRaw(editorState.getCurrentContent())),
       };
-      await postRequest("/api/admin/news", formData, true);
+      await postRequest("/api/admin/news", formData);
       navigate("/news");
     }
   };

@@ -13,7 +13,7 @@ const usePostRequest = () => {
 
   const toast = useToast();
 
-  const postRequest = async (url: string, body: unknown, hasImage: boolean) => {
+  const postRequest = async (url: string, body: unknown) => {
     setIsLoading(true);
     try {
       const response = await axiosInstance.post(url, body, {

@@ -9,7 +9,6 @@ const PersistLogin = () => {
   const toast = useToast();
 
   useEffect(() => {
-    let isMounted = true;
     function verifyUser() {
       if (Cookies.get("token")) {
       } else {
@@ -18,10 +17,6 @@ const PersistLogin = () => {
       }
     }
     verifyUser();
-
-    return () => {
-      isMounted = false;
-    };
   }, [dispatch, loggedIn, navigate]);
   return <Outlet />;
 };

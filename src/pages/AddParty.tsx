@@ -70,7 +70,7 @@ const AddParty = () => {
         photo: image,
         theater_id: 99,
       };
-      await postRequest("/api/admin/party/", formData, true);
+      await postRequest("/api/admin/party/", formData);
       navigate("/parties");
     }
   };
