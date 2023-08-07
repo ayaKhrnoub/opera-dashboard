@@ -1,0 +1,15 @@
+export { default as Home } from "./Home";
+export { default as Login } from "./Login";
+export { default as Dashboard } from "./Dashboard";
+export { default as Parties } from "./Parties";
+export { default as Reservation } from "./Reservation";
+export { default as Users } from "./Users";
+export { default as Archives } from "./Archives";
+export { default as NotFound } from "./NotFound";
+export { default as News } from "./News";
+export { default as AddParty } from "./AddParty";
+export { default as AllReservation } from "./AllReservation";
+export { default as AddNews } from "./AddNews";
+export { default as Contact } from "./Contact";
+export { default as Theater } from "./Theater";
+export { default as AddTheater } from "./AddTheater";
