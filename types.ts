@@ -62,6 +62,7 @@ export type PartyType = {
 export type NewsType = {
   id: number;
   title: string;
+  sub_title: string;
   text: string;
   type: string;
   image: string;
@@ -84,4 +85,15 @@ export type TheaterType = {
   seats_number: number;
   seats: string;
   image: string;
+};
+export type UserType = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  email_verified_at: string;
+  allowed_tickets: number;
+  created_at: string;
+  updated_at: string;
 };

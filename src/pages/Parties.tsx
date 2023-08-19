@@ -3,15 +3,18 @@ import { BsInfoCircle } from "react-icons/bs";
 import Tippy from "@tippy.js/react";
 import "tippy.js/dist/tippy.css";
 import ReactPaginate from "react-paginate";
+import { BiArchive } from "react-icons/bi";
 import InformationField from "../components/InformationField";
-import { Modal, Scanner } from "../components";
+import { Button, Loading, Modal, UploadFile } from "../components";
 import { useCallback, useEffect, useState } from "react";
 import { useFetch } from "../hooks";
 import { Link, useSearchParams } from "react-router-dom";
 import { PaginationType, PartyType } from "../../types";
+import usePostRequest from "../hooks/usePostRequest";
 
 const Parties = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const { postRequest, isLoading: loading } = usePostRequest();
   const [selectParty, setSelectParty] = useState<PartyType>({
     id: 0,
     theater_id: 0,
@@ -37,9 +40,12 @@ const Parties = () => {
     return pageString ? +pageString : 1;
   });
   const [maxPage, setMaxPage] = useState(5);
+  const [image, setImage] = useState<File | undefined>(undefined);
   const { data, isLoading, error } = useFetch(
     `/api/admin/party/all?count=5&page=${page}`
   );
+  const [errorMsg, setErrorMsg] = useState("");
+
   useEffect(() => {
     if (!isLoading && !error) {
       const partiesList = data as PaginationType<PartyType>;
@@ -63,6 +69,17 @@ const Parties = () => {
     },
     [setPage]
   );
+
+  const addImageToArchive = () => {
+    if (image === undefined) {
+      setErrorMsg("required");
+      return;
+    }
+    postRequest(`/api/admin/party/add-to-archive/${selectParty.id}`, {
+      photos: [image],
+    });
+    setShowScanModal(false);
+  };
   return (
     <>
       <Title>
@@ -147,6 +164,19 @@ const Parties = () => {
                                 </span>
                               </button>
                             </Tippy>
+                            <Tippy delay={300} content="add to Archive">
+                              <button
+                                onClick={() => {
+                                  setShowScanModal(true);
+                                  setSelectParty(party);
+                                }}
+                                className="cursor-pointer transform hover:text-primary hover:scale-110"
+                              >
+                                <span>
+                                  <BiArchive />
+                                </span>
+                              </button>
+                            </Tippy>
                           </div>
                         </td>
                       </tr>
@@ -186,9 +216,9 @@ const Parties = () => {
             party information
           </h2>
           <div className="w-full sm:w-10/12 mx-auto">
-            <div className="w-full flex justify-start items-center mb-4">
+            <div className="w-full aspect-w-16 aspect-h-9 flex justify-start items-center mb-4">
               <img
-                className="rounded-lg"
+                className="rounded-lg object-cover"
                 src={selectParty?.photo}
                 alt="party photo"
               />
@@ -222,7 +252,17 @@ const Parties = () => {
           isOpen={showScanModal}
           onClose={() => setShowScanModal(false)}
         >
-          <Scanner />
+          <div className="px-4">
+            <h2 className="text-center text-primary text-2xl font-bold py-5">
+              allowed tickets
+            </h2>
+            <UploadFile error={errorMsg} setFile={setImage} />
+            <div className="flex justify-center items-center">
+              <Button type="button" onClick={addImageToArchive}>
+                {loading ? <Loading /> : "add"}
+              </Button>
+            </div>
+          </div>
         </Modal>
       </section>
     </>

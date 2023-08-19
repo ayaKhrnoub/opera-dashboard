@@ -6,3 +6,4 @@ export { default as UploadFile } from "./UploadFile";
 export { default as PersistLogin } from "./PersistLogin";
 export { default as Scanner } from "./Scanner";
 export { default as TicketDetail } from "./TicketDetail";
+export { default as Dropdown } from "./Dropdown";

@@ -4,7 +4,6 @@ export { default as Dashboard } from "./Dashboard";
 export { default as Parties } from "./Parties";
 export { default as Reservation } from "./Reservation";
 export { default as Users } from "./Users";
-export { default as Archives } from "./Archives";
 export { default as NotFound } from "./NotFound";
 export { default as News } from "./News";
 export { default as AddParty } from "./AddParty";

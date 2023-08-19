@@ -50,7 +50,7 @@ const AddTheater = () => {
         photo: image,
         seats_number:number
       };
-      await postRequest("/api/admin/theater/", formData);
+      await postRequest("/api/admin/theater/add", formData);
       navigate("/theater");
     }
   };

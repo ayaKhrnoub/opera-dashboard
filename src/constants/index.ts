@@ -1,7 +1,7 @@
 import { IconType } from "react-icons";
 import { RiDashboardLine, RiBarChartLine } from "react-icons/ri";
 import { TiDocumentText } from "react-icons/ti";
-import { FiArchive, FiUsers } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 import { BiNews, BiSolidContact } from "react-icons/bi";
 import { GiTheater } from "react-icons/gi";
 
@@ -32,7 +32,6 @@ const links: linkType[] = [
     Icon: TiDocumentText,
   },
   { id: 4, name: "users", path: "/users", Icon: FiUsers },
-  { id: 5, name: "archives", path: "/archives", Icon: FiArchive },
   { id: 6, name: "news", path: "/news", Icon: BiNews },
   { id: 7, name: "contact us", path: "/contact", Icon: BiSolidContact },
   { id: 8, name: "Theater", path: "/theater", Icon: GiTheater },

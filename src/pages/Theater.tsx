@@ -209,9 +209,9 @@ const Theater = () => {
             contact information
           </h2>
           <div className="w-full sm:w-10/12 mx-auto">
-            <div className="w-full flex justify-start items-center mb-4">
+            <div className="w-full aspect-w-16 aspect-h-9 flex justify-start items-center mb-4">
               <img
-                className="rounded-lg"
+                className="rounded-lg object-cover"
                 src={selectTheater?.image}
                 alt="party photo"
               />

@@ -58,7 +58,6 @@ const useFetch = (url: string) => {
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       });
       const data = await response.data;
-      console.log(data);
       dispatch({ type: "FETCHED_DATA", payload: data });
     } catch (error) {
       const err = error as AxiosError;

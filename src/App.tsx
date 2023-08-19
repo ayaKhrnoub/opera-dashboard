@@ -36,7 +36,6 @@ function App() {
           <Route path="reservation" element={<Reservation />} />
           <Route path="reservation/all" element={<AllReservation />} />
           <Route path="users" element={<Users />} />
-          <Route path="archives" element={<Reservation />} />
           <Route path="news" element={<News />} />
           <Route path="news/add" element={<AddNews />} />
           <Route path="contact" element={<Contact />} />

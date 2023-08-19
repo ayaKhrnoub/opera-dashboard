@@ -11,15 +11,18 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 type ErrorType = {
   title: string;
   image: string;
+  subTitle: string;
   text: string;
 };
 
 const AddNews = () => {
   const [name, setName] = useState<string>("");
+  const [subTitle, setSubTitle] = useState<string>("");
   const [image, setImage] = useState<File | undefined>(undefined);
   const [errors, setErrors] = useState<ErrorType>({
     title: "",
     image: "",
+    subTitle: "",
     text: "",
   });
   const [editorState, setEditorState] = useState(() =>
@@ -36,8 +39,10 @@ const AddNews = () => {
       title: "",
       image: "",
       text: "",
+      subTitle: "",
     };
     tempErrors.title = name ? "" : "This field is required";
+    tempErrors.subTitle = subTitle ? "" : "This field is required";
     tempErrors.image = image ? "" : "This field is required";
     tempErrors.text =
       draftToHtml(convertToRaw(editorState.getCurrentContent())) === "<p></p>"
@@ -53,6 +58,7 @@ const AddNews = () => {
     if (validate()) {
       const formData = {
         title: name,
+        sub_title: subTitle,
         photo: image,
         text: draftToHtml(convertToRaw(editorState.getCurrentContent())),
       };
@@ -79,6 +85,12 @@ const AddNews = () => {
               label="news title"
               setValue={setName}
               value={name}
+            />
+            <Input
+              error={errors.subTitle}
+              label="sub title"
+              setValue={setSubTitle}
+              value={subTitle}
             />
             <UploadFile error={errors.image} setFile={setImage} />
             <div>

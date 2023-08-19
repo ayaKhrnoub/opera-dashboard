@@ -5,9 +5,10 @@ import { Button } from ".";
 interface Props {
   setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
   error: string;
+  title?: string;
 }
 
-const UploadFile = ({ setFile, error }: Props) => {
+const UploadFile = ({ setFile, error, title }: Props) => {
   const [isDragging, setIsDragging] = useState(false);
   const [image, setImage] = useState<File | undefined>(undefined);
   const [imageUrl, setImageUrl] = useState<string>("");
@@ -49,6 +50,7 @@ const UploadFile = ({ setFile, error }: Props) => {
   };
   return (
     <div className="mb-8 relative w-full rounded-xl border py-2 px-3 border-primary">
+      <h2 className="text-xl pl-4 pb-2">{title}</h2>
       <div className="w-11/12 mx-auto bg-white/50 rounded-lg border-2 border-dashed border-black">
         <div
           className={`m-4 flex justify-center items-center ${

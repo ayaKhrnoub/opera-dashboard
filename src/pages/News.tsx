@@ -18,6 +18,7 @@ const News = () => {
   const [selectNews, setSelectNews] = useState<NewsType>({
     id: 0,
     title: "",
+    sub_title: "",
     text: "",
     type: "",
     image: "",
@@ -110,6 +111,9 @@ const News = () => {
                       title
                     </th>
                     <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                      sub title
+                    </th>
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       actions
                     </th>
                   </tr>
@@ -122,6 +126,9 @@ const News = () => {
                       <tr key={news.id}>
                         <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left text-blueGray-700 ">
                           {news.title}
+                        </th>
+                        <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                          {news.sub_title}
                         </th>
 
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-sm font-bold whitespace-nowrap p-4">
@@ -199,14 +206,15 @@ const News = () => {
             party information
           </h2>
           <div className="w-full sm:w-10/12 mx-auto">
-            <div className="w-full flex justify-start items-center mb-4">
+            <div className="w-full flex aspect-w-16 aspect-h-9 justify-start items-center mb-4">
               <img
-                className="rounded-lg"
+                className="rounded-lg object-cover"
                 src={selectNews?.image}
                 alt="news photo"
               />
             </div>
             <InformationField title="title" text={selectNews?.title} />
+            <InformationField title="sub title" text={selectNews?.sub_title} />
             <InformationField
               title="text"
               text={selectNews?.text}
