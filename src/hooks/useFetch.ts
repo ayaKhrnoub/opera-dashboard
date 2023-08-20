@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useCallback } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { axiosInstance } from "../axios";
 import Cookies from "js-cookie";
 import { useToast } from ".";
@@ -48,13 +48,11 @@ const useFetch = (url: string) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const toast = useToast();
   const navigate = useNavigate();
-  const cancelTokenSource = axios.CancelToken.source();
 
   const fetchData = useCallback(async () => {
     dispatch({ type: "FETCHING_DATA", payload: null });
     try {
       const response = await axiosInstance.get(url, {
-        cancelToken: cancelTokenSource.token,
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       });
       const data = await response.data;
@@ -95,8 +93,6 @@ const useFetch = (url: string) => {
 
   useEffect(() => {
     fetchData();
-
-    return () => cancelTokenSource.cancel();
   }, [fetchData]);
 
   const { data, isLoading, error } = state;

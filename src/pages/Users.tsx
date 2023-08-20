@@ -75,13 +75,18 @@ const Users = () => {
     });
     toast("done", "success", "bottom-left", "dark");
     setShowScanModal(false);
+    setPartiesList((prev) =>
+      prev.map((user) => {
+        if (user.id === selectParty.id)
+          return { ...user, allowed_tickets: +ticketNumber };
+        else return user;
+      })
+    );
   };
   return (
     <>
       <Title>
-        <h1 className="text-start text-3xl font-bold pl-4 text-white">
-          Users
-        </h1>
+        <h1 className="text-start text-3xl font-bold pl-4 text-white">Users</h1>
       </Title>
       <section className="pt-nav-height py-1">
         <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
