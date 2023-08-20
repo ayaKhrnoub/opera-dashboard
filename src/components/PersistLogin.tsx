@@ -12,7 +12,7 @@ const PersistLogin = () => {
     function verifyUser() {
       if (Cookies.get("token")) {
       } else {
-        toast("bbbbb", "error", "bottom-left", "dark");
+        toast("error", "error", "bottom-left", "dark");
         navigate("/login");
       }
     }

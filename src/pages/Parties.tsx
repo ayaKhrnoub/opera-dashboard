@@ -5,7 +5,7 @@ import "tippy.js/dist/tippy.css";
 import ReactPaginate from "react-paginate";
 import { BiArchive } from "react-icons/bi";
 import InformationField from "../components/InformationField";
-import { Button, Loading, Modal, UploadFile } from "../components";
+import { Button, Loading, Modal, Scanner, UploadFile } from "../components";
 import { useCallback, useEffect, useState } from "react";
 import { useFetch } from "../hooks";
 import { Link, useSearchParams } from "react-router-dom";
@@ -14,6 +14,7 @@ import usePostRequest from "../hooks/usePostRequest";
 
 const Parties = () => {
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { postRequest, isLoading: loading } = usePostRequest();
   const [selectParty, setSelectParty] = useState<PartyType>({
     id: 0,
@@ -106,7 +107,7 @@ const Parties = () => {
                     add new party
                   </Link>
                   <button
-                    onClick={() => setShowScanModal(true)}
+                    onClick={() => setShowModal(true)}
                     className="bg-purple text-white active:scale-95 hover:bg-purple/80 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                   >
@@ -263,6 +264,13 @@ const Parties = () => {
               </Button>
             </div>
           </div>
+        </Modal>
+        <Modal
+          clickOutSide
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+        >
+          <Scanner />
         </Modal>
       </section>
     </>
